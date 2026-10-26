@@ -84,7 +84,7 @@ cl /EHsc /O2 /std:c++17 src\hashlnk.cpp /Fe:hashlnk.exe
 
 ### Precompiled Binary Verification (SHA256):
 ```text
-hashlnk.exe: 7d30b1ec2d488c323decc8f9c92cb71454e893b572f80226eb6475ff1f0a28a3
+hashlnk.exe: 3374e08899bc8719b7e032f00184856f3d7c321aab5bf2bd4e42386f98063adf
 ```
 
 ---

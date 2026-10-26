@@ -4,7 +4,7 @@
     https://github.com/mrun1corn/win10-terminal-patch
 
 .DESCRIPTION
-    Automates switching Windows 10 Start Menu Context (Win+X) shortcuts to Windows Terminal (PowerShell 7)
+    Automates switching Windows 10 Start Menu Context (Win+X) shortcuts to modern Windows Terminal
     with admin elevation support and ensures Nerd Font / UTF-8 rendering across Windows consoles.
 #>
 
@@ -48,7 +48,7 @@ if (-not (Test-Path $HasherExe)) {
 }
 
 # Verify SHA256 integrity of the hasher binary before executing
-$expectedHash = "7D30B1EC2D488C323DECC8F9C92CB71454E893B572F80226EB6475FF1F0A28A3"
+$expectedHash = "3374E08899BC8719B7E032F00184856F3D7C321AAB5BF2BD4E42386F98063ADF"
 $actualHash = (Get-FileHash -Path $HasherExe -Algorithm SHA256).Hash
 if ($actualHash -ne $expectedHash) {
     Write-Error "Security verification failed: hashlnk.exe checksum mismatch ($actualHash vs $expectedHash). Aborting."
