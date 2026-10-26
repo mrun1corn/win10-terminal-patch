@@ -21,9 +21,23 @@ Write-Host "==========================================================" -Foregro
 
 $WinXGroup3 = "$env:LOCALAPPDATA\Microsoft\Windows\WinX\Group3"
 $BackupDir  = "$env:LOCALAPPDATA\Microsoft\Windows\WinX\Group3_OriginalBackup"
-$HasherExe  = Join-Path $PSScriptRoot "hashlnk.exe"
+$HasherExe = if ($PSScriptRoot) { Join-Path $PSScriptRoot "hashlnk.exe" } else { "$env:TEMP\hashlnk.exe" }
 if (-not (Test-Path $HasherExe)) {
-    $HasherExe = Join-Path $PSScriptRoot "bin\hashlnk.exe"
+    $altPath = Join-Path $PSScriptRoot "bin\hashlnk.exe"
+    if ($PSScriptRoot -and (Test-Path $altPath)) {
+        $HasherExe = $altPath
+    }
+}
+
+# If invoked via `irm ... | iex` where hashlnk.exe is not adjacent, auto-download from GitHub releases
+if (-not (Test-Path $HasherExe)) {
+    $HasherExe = "$env:TEMP\hashlnk.exe"
+    if (-not (Test-Path $HasherExe)) {
+        Write-Host "Downloading hashlnk utility from GitHub release..." -ForegroundColor Yellow
+        $releaseUrl = "https://github.com/mrun1corn/win10-terminal-patch/releases/download/v1.0.0/hashlnk.exe"
+        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+        Invoke-WebRequest -Uri $releaseUrl -OutFile $HasherExe -UseBasicParsing
+    }
 }
 $WTPath     = "$env:LOCALAPPDATA\Microsoft\WindowsApps\wt.exe"
 
