@@ -1,0 +1,16 @@
+# Visual Studio & C++ Build Artifacts
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.exp
+*.lib
+
+# Temporary files
+*.tmp
+*.bak
+Group3_OriginalBackup/
+
+# OS specific
+Thumbs.db
+Desktop.ini
