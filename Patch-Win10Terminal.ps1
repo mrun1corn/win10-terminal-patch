@@ -162,7 +162,9 @@ try {
     $ttfKey = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont"
     Set-ItemProperty -Path $ttfKey -Name "0000" -Value "JetBrainsMono NFM" -ErrorAction SilentlyContinue
     Set-ItemProperty -Path $ttfKey -Name "00000" -Value "JetBrainsMono NF" -ErrorAction SilentlyContinue
-} catch { }
+} catch {
+    Write-Verbose "Could not update HKLM TrueTypeFont registry key: $_"
+}
 
 # Set defaults in HKCU Console
 $consoleKeys = @(
