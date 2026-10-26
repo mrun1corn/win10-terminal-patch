@@ -15,6 +15,13 @@ param (
 
 $ErrorActionPreference = "Stop"
 
+# Assert Administrator privileges (required for HKLM font whitelisting and WinX Group updates)
+$isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+if (-not $isAdmin) {
+    Write-Error "Administrator privileges required. Please re-run from an elevated PowerShell prompt."
+    return
+}
+
 Write-Host "==========================================================" -ForegroundColor Cyan
 Write-Host " Windows 10 Modern Terminal & Win+X Patch Utility        " -ForegroundColor Cyan
 Write-Host "==========================================================" -ForegroundColor Cyan
@@ -38,6 +45,14 @@ if (-not (Test-Path $HasherExe)) {
         [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
         Invoke-WebRequest -Uri $releaseUrl -OutFile $HasherExe -UseBasicParsing
     }
+}
+
+# Verify SHA256 integrity of the hasher binary before executing
+$expectedHash = "7D30B1EC2D488C323DECC8F9C92CB71454E893B572F80226EB6475FF1F0A28A3"
+$actualHash = (Get-FileHash -Path $HasherExe -Algorithm SHA256).Hash
+if ($actualHash -ne $expectedHash) {
+    Write-Error "Security verification failed: hashlnk.exe checksum mismatch ($actualHash vs $expectedHash). Aborting."
+    return
 }
 $WTPath     = "$env:LOCALAPPDATA\Microsoft\WindowsApps\wt.exe"
 

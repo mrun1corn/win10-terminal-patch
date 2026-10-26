@@ -1,0 +1,28 @@
+name: Build & Verify hashlnk
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up MSVC
+      uses: ilammy/msvc-dev-cmd@v1
+
+    - name: Compile hashlnk.exe
+      run: |
+        cl /EHsc /O2 /std:c++17 src\hashlnk.cpp /Fe:hashlnk-build.exe
+        Get-FileHash hashlnk-build.exe -Algorithm SHA256
+
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: hashlnk-binary
+        path: hashlnk-build.exe

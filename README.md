@@ -6,7 +6,9 @@
 [![Tested On](https://img.shields.io/badge/Windows%2010%20Build-22H2%20(19045)-blueviolet.svg)](https://microsoft.com/windows)
 [![Shell: PowerShell](https://img.shields.io/badge/Shell-PowerShell-5391FE.svg?logo=powershell)](https://github.com/PowerShell/PowerShell)
 
-A fast, lightweight, and 100% reversible tool that brings Windows 11's default terminal experience to **Windows 10**. Automatically upgrades the **Win+X Start context menu** to open **Windows Terminal** directly (with Administrator support), installs **JetBrains Mono Nerd Font**, and fixes broken font/glyph icons across classic Windows consoles.
+A fast, lightweight, and 100% reversible tool that brings modern Windows Terminal directly to the **Windows 10 Win+X Start context menu**. Especially vital for **Windows 10 LTSC, Enterprise, or builds prior to KB5026435** where native terminal delegation does not exist.
+
+Automatically retargets the **Win+X Start context menu** to open **Windows Terminal** directly (with Administrator elevation support), installs **JetBrains Mono Nerd Font**, and fixes broken font/glyph icons and legacy OEM codepages across classic Windows consoles.
 
 ---
 
@@ -61,7 +63,7 @@ To restore factory Windows 10 shortcuts and registry settings at any time, run:
 ```
 *(Or via direct one-liner:)*
 ```powershell
-irm https://raw.githubusercontent.com/mrun1corn/win10-terminal-patch/main/Patch-Win10Terminal.ps1 | Invoke-Expression -ArgumentList "-Revert"
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/mrun1corn/win10-terminal-patch/main/Patch-Win10Terminal.ps1))) -Revert
 ```
 
 ---
@@ -78,6 +80,11 @@ The repository provides full C++ source code in [`src/`](src/) so users never ha
 ```cmd
 vcvars64.bat
 cl /EHsc /O2 /std:c++17 src\hashlnk.cpp /Fe:hashlnk.exe
+```
+
+### Precompiled Binary Verification (SHA256):
+```text
+hashlnk.exe: 7d30b1ec2d488c323decc8f9c92cb71454e893b572f80226eb6475ff1f0a28a3
 ```
 
 ---
