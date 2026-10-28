@@ -1,10 +1,16 @@
 # Windows 10 Modern Terminal & Win+X Context Menu Patch
 
 [![GitHub release](https://img.shields.io/github/v/release/mrun1corn/win10-terminal-patch?color=2ea44f&logo=github)](https://github.com/mrun1corn/win10-terminal-patch/releases)
+[![GitHub repo size](https://img.shields.io/github/repo-size/mrun1corn/win10-terminal-patch?color=blue&logo=github)](https://github.com/mrun1corn/win10-terminal-patch)
+[![GitHub stars](https://img.shields.io/github/stars/mrun1corn/win10-terminal-patch?style=flat&color=yellow&logo=github)](https://github.com/mrun1corn/win10-terminal-patch/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/mrun1corn/win10-terminal-patch?style=flat&color=orange&logo=github)](https://github.com/mrun1corn/win10-terminal-patch/network/members)
+[![GitHub watchers](https://img.shields.io/github/watchers/mrun1corn/win10-terminal-patch?style=flat&color=lightgrey&logo=github)](https://github.com/mrun1corn/win10-terminal-patch/watchers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform: Windows 10](https://img.shields.io/badge/Platform-Windows%2010-0078D6.svg?logo=windows)](https://microsoft.com/windows)
 [![Tested On](https://img.shields.io/badge/Windows%2010%20Build-22H2%20(19045)-blueviolet.svg)](https://microsoft.com/windows)
 [![Shell: PowerShell](https://img.shields.io/badge/Shell-PowerShell-5391FE.svg?logo=powershell)](https://github.com/PowerShell/PowerShell)
+[![Last Commit](https://img.shields.io/github/last-commit/mrun1corn/win10-terminal-patch?color=green&logo=git)](https://github.com/mrun1corn/win10-terminal-patch/commits/main)
+[![Views](https://hits.sh/github.com/mrun1corn/win10-terminal-patch.svg?label=Views&color=brightgreen)](https://hits.sh/github.com/mrun1corn/win10-terminal-patch/)
 
 A fast, lightweight, and 100% reversible tool that brings modern Windows Terminal directly to the **Windows 10 Win+X Start context menu**. Especially vital for **Windows 10 LTSC, Enterprise, or builds prior to KB5026435** where native terminal delegation does not exist.
 
